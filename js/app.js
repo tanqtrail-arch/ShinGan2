@@ -10,6 +10,7 @@ const App = (() => {
   let timeLeft = 0;
   let hintUsed = false;
   let answered = false;
+  let judging = false; // NEW: tracks intro vs judging phase
   const TIME_LIMIT = 15;
 
   // DOM refs
@@ -39,6 +40,8 @@ const App = (() => {
     els.progressBar = document.getElementById("progress-bar");
     els.timerBar = document.getElementById("timer-bar");
     els.timerText = document.getElementById("timer-text");
+    els.timerCircle = document.getElementById("timer-circle-progress");
+    els.timerArea = document.getElementById("timer-area");
     els.paintingCard = document.getElementById("painting-card");
     els.paintingCanvas = document.getElementById("painting-canvas");
     els.paintingTitle = document.getElementById("painting-title");
@@ -68,6 +71,9 @@ const App = (() => {
     els.zoomModal = document.getElementById("zoom-modal");
     els.zoomContent = document.getElementById("zoom-content");
     els.stageName = document.getElementById("question-stage-name");
+    els.viewingPhase = document.getElementById("viewing-phase");
+    els.judgingPhase = document.getElementById("judging-phase");
+    els.btnStartJudge = document.getElementById("btn-start-judge");
 
     // Event listeners
     document.getElementById("btn-start").addEventListener("click", showStages);
@@ -89,6 +95,7 @@ const App = (() => {
     document
       .getElementById("btn-back-stages-intro")
       .addEventListener("click", showStages);
+    els.btnStartJudge.addEventListener("click", startJudging);
     els.hintBtn.addEventListener("click", showHint);
     els.btnAuthentic.addEventListener("click", () => submitAnswer(true));
     els.btnForgery.addEventListener("click", () => submitAnswer(false));
@@ -114,6 +121,7 @@ const App = (() => {
   function showScreen(name) {
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
+    window.scrollTo(0, 0);
   }
 
   function showTitle() {
@@ -181,8 +189,10 @@ const App = (() => {
     showQuestion();
   }
 
+  // Phase 1: Show painting info (viewing phase - no timer)
   function showQuestion() {
     answered = false;
+    judging = false;
     hintUsed = false;
     const q = currentStage.questions[currentQuestionIndex];
 
@@ -211,10 +221,32 @@ const App = (() => {
     els.btnForgery.className = "judge-btn forgery";
     els.answerOverlay.classList.remove("visible");
 
-    // Start timer
-    startTimer();
+    // Show viewing phase, hide judging phase
+    els.viewingPhase.classList.add("active");
+    els.judgingPhase.classList.remove("active");
+    els.timerArea.classList.remove("active");
+
+    // Reset timer display
+    timeLeft = TIME_LIMIT;
+    updateTimerDisplay();
 
     showScreen("question");
+  }
+
+  // Phase 2: Start judging (timer starts)
+  function startJudging() {
+    judging = true;
+
+    // Hide viewing phase, show judging phase
+    els.viewingPhase.classList.remove("active");
+    els.judgingPhase.classList.add("active");
+    els.timerArea.classList.add("active");
+
+    // Scroll to top so timer is visible
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Start timer
+    startTimer();
   }
 
   function startTimer() {
@@ -237,15 +269,25 @@ const App = (() => {
   function updateTimerDisplay() {
     const pct = (timeLeft / TIME_LIMIT) * 100;
     els.timerBar.style.width = `${pct}%`;
-    els.timerText.textContent = Math.ceil(timeLeft);
+    const seconds = Math.ceil(timeLeft);
+    els.timerText.textContent = seconds;
 
+    // Update circular timer
+    const circumference = 2 * Math.PI * 54; // r=54
+    const offset = circumference * (1 - pct / 100);
+    els.timerCircle.style.strokeDasharray = circumference;
+    els.timerCircle.style.strokeDashoffset = offset;
+
+    // Color changes
+    let colorClass = "";
     if (timeLeft <= 3) {
-      els.timerBar.className = "timer-fill danger";
+      colorClass = "danger";
     } else if (timeLeft <= 7) {
-      els.timerBar.className = "timer-fill warning";
-    } else {
-      els.timerBar.className = "timer-fill";
+      colorClass = "warning";
     }
+
+    els.timerBar.className = `timer-fill ${colorClass}`;
+    els.timerArea.className = `timer-area active ${colorClass}`;
   }
 
   function showHint() {
@@ -418,6 +460,16 @@ const App = (() => {
   // === Keyboard ===
   function handleKeydown(e) {
     if (!screens.question.classList.contains("active")) return;
+
+    // If in viewing phase, Enter/Space starts judging
+    if (!judging && !answered) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        startJudging();
+      }
+      return;
+    }
+
     if (answered) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();

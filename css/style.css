@@ -363,7 +363,7 @@ body {
   height: 3px;
   background: var(--border-color);
   border-radius: 2px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   overflow: hidden;
 }
 
@@ -374,13 +374,82 @@ body {
   border-radius: 2px;
 }
 
-.timer-track {
+/* === Large Circular Timer === */
+.timer-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.timer-area.active {
+  display: flex;
+}
+
+.timer-circle-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.8rem;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-circle-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 6;
+}
+
+.timer-circle-progress {
+  fill: none;
+  stroke: var(--accent-green);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.05s linear, stroke 0.3s ease;
+}
+
+.timer-area.warning .timer-circle-progress {
+  stroke: var(--accent-gold);
+}
+
+.timer-area.danger .timer-circle-progress {
+  stroke: var(--accent-red);
+  animation: pulse 0.5s ease infinite;
+}
+
+.timer-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.timer-area.warning .timer-text {
+  color: var(--accent-gold);
+}
+
+.timer-area.danger .timer-text {
+  color: var(--accent-red);
+}
+
+.timer-bar-track {
+  width: 100%;
+  max-width: 400px;
   height: 4px;
   background: var(--border-color);
   border-radius: 2px;
-  margin-bottom: 1.5rem;
   overflow: hidden;
-  position: relative;
 }
 
 .timer-fill {
@@ -407,14 +476,6 @@ body {
   50% {
     opacity: 0.6;
   }
-}
-
-.timer-text {
-  position: absolute;
-  right: 0;
-  top: -1.4rem;
-  font-size: 0.75rem;
-  color: var(--text-muted);
 }
 
 /* Painting Card */
@@ -485,6 +546,61 @@ body {
   border-left: 3px solid var(--accent-gold);
 }
 
+/* === Viewing Phase (Phase 1: Read painting info) === */
+.viewing-phase {
+  display: none;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.viewing-phase.active {
+  display: block;
+}
+
+.viewing-message {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  background: var(--bg-card);
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+}
+
+.viewing-label {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.3rem;
+}
+
+.viewing-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.btn-start-judge {
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+}
+
+.key-hint-inline {
+  font-size: 0.7rem;
+  font-weight: 400;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+}
+
+/* === Judging Phase (Phase 2: Timer + Answer) === */
+.judging-phase {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.judging-phase.active {
+  display: block;
+}
+
 /* Hint */
 .hint-area {
   margin-bottom: 1rem;
@@ -536,12 +652,12 @@ body {
 }
 
 .judge-btn {
-  padding: 1rem;
+  padding: 1.2rem;
   border: 2px solid var(--border-color);
   border-radius: 8px;
   background: var(--bg-card);
   color: var(--text-primary);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -907,6 +1023,15 @@ body {
   .result-actions {
     flex-direction: column;
     align-items: center;
+  }
+
+  .timer-circle-wrap {
+    width: 80px;
+    height: 80px;
+  }
+
+  .timer-text {
+    font-size: 1.8rem;
   }
 }
 
