@@ -531,6 +531,14 @@ const App = (() => {
           radial-gradient(ellipse at ${60 + (seed % 30)}% ${20 + (seed % 30)}%, ${c[1]}cc 0%, transparent 40%),
           conic-gradient(from ${seed * 37 % 360}deg at 50% 50%, ${c[2]}, ${c[3]}, ${c[4]}, ${c[2]})
         `;
+      case 8: // Ukiyo-e - flat color blocks, woodblock print style
+        return `
+          linear-gradient(180deg, ${c[4]} 0%, ${c[4]} 30%, ${c[0]} 30%, ${c[0]} 65%, ${c[3]} 65%, ${c[3]} 100%)
+        `;
+      case 9: // Rinpa - gold leaf base with decorative accents
+        return `
+          radial-gradient(ellipse at 50% 50%, ${c[0]}ee 0%, ${c[0]}cc 40%, ${c[0]}aa 70%, ${c[0]}88 100%)
+        `;
       default:
         return `linear-gradient(135deg, ${c[0]}, ${c[1]})`;
     }
@@ -640,6 +648,65 @@ const App = (() => {
             transform: rotate(${r(seed+i*31) * 360}deg) skew(${r(seed+i*37)*20 - 10}deg);
           "></div>`);
         }
+        break;
+
+      case 8: // Ukiyo-e - wave-like curves, flat graphic shapes
+        // Horizon/wave line
+        layers.push(`<div class="art-layer" style="
+          position:absolute; bottom:30%; left:0; right:0; height:15%;
+          background: ${c[0]}66;
+          border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        "></div>`);
+        // Graphic elements (mountain, wave forms)
+        for (let i = 0; i < 4; i++) {
+          const x = 5 + r(seed + i * 7) * 70;
+          const y = 20 + r(seed + i * 11) * 50;
+          const w = 15 + r(seed + i * 13) * 25;
+          const h = 10 + r(seed + i * 17) * 20;
+          layers.push(`<div class="art-layer" style="
+            position:absolute; left:${x}%; top:${y}%;
+            width:${w}%; height:${h}%;
+            background: ${c[i % 5]}bb;
+            border-radius: ${50 + r(seed+i)*50}% ${50 + r(seed+i+1)*50}% 0 0;
+            border-bottom: 2px solid ${c[(i+1) % 5]}88;
+          "></div>`);
+        }
+        // Seal-like stamp
+        layers.push(`<div class="art-layer" style="
+          position:absolute; bottom:8%; right:8%;
+          width:8%; height:12%;
+          background: ${c[1]};
+          border-radius: 2px;
+          opacity: 0.8;
+        "></div>`);
+        break;
+
+      case 9: // Rinpa - gold leaf with bold natural motifs
+        // Gold leaf texture (subtle variation)
+        layers.push(`<div class="art-layer" style="
+          position:absolute; inset:0;
+          background:
+            repeating-linear-gradient(${45 + r(seed)*30}deg, transparent, transparent 20px, ${c[0]}22 20px, ${c[0]}22 21px),
+            repeating-linear-gradient(${135 + r(seed+1)*30}deg, transparent, transparent 25px, ${c[3]}15 25px, ${c[3]}15 26px);
+        "></div>`);
+        // Bold decorative plant/flower motifs
+        for (let i = 0; i < 5; i++) {
+          const x = 10 + r(seed + i * 5) * 65;
+          const y = 15 + r(seed + i * 9) * 55;
+          const size = 10 + r(seed + i * 13) * 20;
+          layers.push(`<div class="art-layer" style="
+            position:absolute; left:${x}%; top:${y}%;
+            width:${size}%; height:${size * (1 + r(seed+i*7)*0.5)}%;
+            background: radial-gradient(ellipse, ${c[(i+1) % 5]}cc 0%, ${c[(i+2) % 5]}66 50%, transparent 70%);
+            border-radius: ${40+r(seed+i*2)*60}% ${40+r(seed+i*3)*60}%;
+          "></div>`);
+        }
+        // Flowing water or cloud band
+        layers.push(`<div class="art-layer" style="
+          position:absolute; bottom:15%; left:0; right:0; height:8%;
+          background: linear-gradient(90deg, transparent 0%, ${c[3]}44 20%, ${c[3]}66 50%, ${c[3]}44 80%, transparent 100%);
+          border-radius: 50%;
+        "></div>`);
         break;
     }
 
