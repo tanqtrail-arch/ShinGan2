@@ -202,7 +202,7 @@ const App = (() => {
     els.stageName.textContent = `${currentStage.name} - Stage ${currentStage.id}`;
 
     // Render painting
-    renderPaintingCSS(els.paintingCanvas, q.colors, currentStage.id, currentQuestionIndex);
+    renderPainting(els.paintingCanvas, q, currentStage.id, currentQuestionIndex);
     els.paintingTitle.textContent = q.title;
     els.paintingArtist.textContent = q.artist;
     els.paintingYear.textContent = q.year;
@@ -445,11 +445,22 @@ const App = (() => {
   // === Zoom ===
   function openZoom() {
     const q = currentStage.questions[currentQuestionIndex];
-    const clone = document.createElement("div");
-    clone.className = "painting-canvas zoom-painting";
-    renderPaintingCSS(clone, q.colors, currentStage.id, currentQuestionIndex);
     els.zoomContent.innerHTML = "";
-    els.zoomContent.appendChild(clone);
+
+    // If image exists, show zoomed image
+    const existingImg = els.paintingCanvas.querySelector(".painting-img");
+    if (existingImg) {
+      const img = document.createElement("img");
+      img.src = existingImg.src;
+      img.alt = q.title;
+      img.className = "zoom-painting-img";
+      els.zoomContent.appendChild(img);
+    } else {
+      const clone = document.createElement("div");
+      clone.className = "painting-canvas zoom-painting";
+      renderPaintingCSS(clone, q.colors, currentStage.id, currentStage.id * 100 + currentQuestionIndex);
+      els.zoomContent.appendChild(clone);
+    }
     els.zoomModal.classList.add("visible");
   }
 
@@ -486,10 +497,39 @@ const App = (() => {
     }
   }
 
-  // === Painting CSS Art Generator ===
-  function renderPaintingCSS(el, colors, stageId, qIndex) {
-    const c = colors || ["#888", "#666", "#aaa", "#444", "#bbb"];
+  // === Painting Renderer (image with CSS fallback) ===
+  function renderPainting(el, question, stageId, qIndex) {
+    const c = question.colors || ["#888", "#666", "#aaa", "#444", "#bbb"];
     const seed = stageId * 100 + qIndex;
+
+    el.innerHTML = "";
+    el.style.background = "";
+    el.classList.remove("has-image");
+
+    if (question.image) {
+      const img = new Image();
+      img.src = question.image;
+      img.alt = question.title;
+      img.className = "painting-img";
+      img.onload = () => {
+        el.innerHTML = "";
+        el.style.background = "none";
+        el.classList.add("has-image");
+        el.appendChild(img);
+      };
+      img.onerror = () => {
+        // Fallback to CSS art
+        renderPaintingCSS(el, c, stageId, seed);
+      };
+      // Show CSS art while loading
+      renderPaintingCSS(el, c, stageId, seed);
+    } else {
+      renderPaintingCSS(el, c, stageId, seed);
+    }
+  }
+
+  function renderPaintingCSS(el, colors, stageId, seed) {
+    const c = colors || ["#888", "#666", "#aaa", "#444", "#bbb"];
 
     // Base layer
     el.style.background = generateBackground(c, stageId, seed);
