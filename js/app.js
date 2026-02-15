@@ -11,6 +11,7 @@ const App = (() => {
   let hintUsed = false;
   let answered = false;
   let judging = false; // NEW: tracks intro vs judging phase
+  let showingAuthentic = true; // NEW: whether current display is real or fake
   const TIME_LIMIT = 15;
 
   // DOM refs
@@ -196,13 +197,17 @@ const App = (() => {
     hintUsed = false;
     const q = currentStage.questions[currentQuestionIndex];
 
+    // Randomly decide to show real or fake image
+    showingAuthentic = Math.random() < 0.5;
+
     // Update progress
     els.questionProgress.textContent = `${currentQuestionIndex + 1} / ${currentStage.questions.length}`;
     els.progressBar.style.width = `${((currentQuestionIndex + 1) / currentStage.questions.length) * 100}%`;
     els.stageName.textContent = `${currentStage.name} - Stage ${currentStage.id}`;
 
-    // Render painting
-    renderPainting(els.paintingCanvas, q, currentStage.id, currentQuestionIndex);
+    // Render painting (real or fake based on random selection)
+    const imageToShow = showingAuthentic ? q.realImage : q.fakeImage;
+    renderPainting(els.paintingCanvas, q, currentStage.id, currentQuestionIndex, imageToShow);
     els.paintingTitle.textContent = q.title;
     els.paintingArtist.textContent = q.artist;
     els.paintingYear.textContent = q.year;
@@ -304,13 +309,15 @@ const App = (() => {
 
     const q = currentStage.questions[currentQuestionIndex];
     const timedOut = playerSaidAuthentic === null;
-    const correct = !timedOut && playerSaidAuthentic === q.isAuthentic;
+    // Now uses showingAuthentic (randomly determined) instead of q.isAuthentic
+    const correct = !timedOut && playerSaidAuthentic === showingAuthentic;
 
     if (correct) score++;
 
     answers.push({
       question: q,
       playerAnswer: playerSaidAuthentic,
+      wasAuthentic: showingAuthentic,
       correct,
       timedOut,
       hintUsed,
@@ -322,7 +329,7 @@ const App = (() => {
     els.btnForgery.disabled = true;
 
     // Highlight correct answer
-    if (q.isAuthentic) {
+    if (showingAuthentic) {
       els.btnAuthentic.classList.add("correct-answer");
     } else {
       els.btnForgery.classList.add("correct-answer");
@@ -332,16 +339,19 @@ const App = (() => {
     let resultHTML;
     if (timedOut) {
       resultHTML = `<div class="answer-badge timeout">TIME UP</div>
-        <p class="answer-correct-was">正解: ${q.isAuthentic ? "本物" : "贋作"}</p>`;
+        <p class="answer-correct-was">正解: ${showingAuthentic ? "本物" : "贋作"}</p>`;
     } else if (correct) {
       resultHTML = `<div class="answer-badge correct">正解！</div>`;
     } else {
       resultHTML = `<div class="answer-badge incorrect">不正解</div>
-        <p class="answer-correct-was">正解: ${q.isAuthentic ? "本物" : "贋作"}</p>`;
+        <p class="answer-correct-was">正解: ${showingAuthentic ? "本物" : "贋作"}</p>`;
     }
 
     els.answerResult.innerHTML = resultHTML;
-    els.answerExplanation.textContent = q.explanation;
+    // Show forgery explanation when fake was shown, normal explanation for real
+    els.answerExplanation.textContent = showingAuthentic
+      ? `本物です。${q.explanation}`
+      : `贋作です。${q.fakeExplanation || q.explanation}`;
     els.answerNext.textContent =
       currentQuestionIndex < currentStage.questions.length - 1
         ? "次の問題へ"
@@ -390,7 +400,7 @@ const App = (() => {
         return `<div class="result-answer-item ${cls}">
           <span class="result-answer-icon">${icon}</span>
           <span class="result-answer-title">Q${i + 1}. ${a.question.title}</span>
-          <span class="result-answer-label">${a.question.isAuthentic ? "本物" : "贋作"}</span>
+          <span class="result-answer-label">${a.wasAuthentic ? "本物" : "贋作"}</span>
         </div>`;
       })
       .join("");
@@ -498,7 +508,7 @@ const App = (() => {
   }
 
   // === Painting Renderer (image with CSS fallback) ===
-  function renderPainting(el, question, stageId, qIndex) {
+  function renderPainting(el, question, stageId, qIndex, imagePath) {
     const c = question.colors || ["#888", "#666", "#aaa", "#444", "#bbb"];
     const seed = stageId * 100 + qIndex;
 
@@ -506,9 +516,9 @@ const App = (() => {
     el.style.background = "";
     el.classList.remove("has-image");
 
-    if (question.image) {
+    if (imagePath) {
       const img = new Image();
-      img.src = question.image;
+      img.src = imagePath;
       img.alt = question.title;
       img.className = "painting-img";
       img.onload = () => {

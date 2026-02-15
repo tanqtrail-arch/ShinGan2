@@ -25,7 +25,10 @@ const STAGES = [
         explanation:
           "本物です。レオナルド・ダ・ヴィンチの代表作で、スフマート技法（輪郭を煙のようにぼかす手法）が完璧に用いられています。ポプラ板に油彩で描かれ、現在ルーヴル美術館に所蔵されています。",
         colors: ["#5C4033", "#8B7355", "#D4C5A9", "#2F4F4F", "#1a1a2e"],
-        image: "images/s1-q1.jpg",
+        fakeExplanation:
+          "微笑みの表情が微妙に変化しており、口元の角度や目元の印象に不自然な改変が加えられています。ダ・ヴィンチのスフマート技法の繊細さが損なわれています。",
+        realImage: "images/s1-q1-real.jpg",
+        fakeImage: "images/s1-q1-fake.jpg",
       },
       {
         title: "ヴィーナスの誕生",
@@ -41,7 +44,10 @@ const STAGES = [
         explanation:
           "本物です。ボッティチェリがテンペラ画で描いた傑作。当時カンヴァスにテンペラで大作を描くこと自体が革新的でした。優美な線描はボッティチェリの真骨頂です。",
         colors: ["#E8D5B7", "#87CEEB", "#F5DEB3", "#DDA0DD", "#90EE90"],
-        image: "images/s1-q2.jpg",
+        fakeExplanation:
+          "背景が本来の明るい海と空から夜空に変更され、月や星が追加されています。ボッティチェリの原作にはない幻想的な夜景が描き加えられた贋作です。",
+        realImage: "images/s1-q2-real.jpg",
+        fakeImage: "images/s1-q2-fake.jpg",
       },
       {
         title: "最後の晩餐",
@@ -57,7 +63,10 @@ const STAGES = [
         explanation:
           "本物です。ダ・ヴィンチは伝統的なフレスコ技法ではなく、テンペラと油彩の実験的混合技法を用いました。この技法ゆえに劣化が早く進みましたが、これは史実と一致します。",
         colors: ["#8B7355", "#CD853F", "#D2B48C", "#556B2F", "#8B4513"],
-        image: "images/s1-q3.jpg",
+        fakeExplanation:
+          "テーブルの上にピザやファストフードが置かれ、弟子たちがスマートフォンを持っているなど、明らかに現代的な要素が描き加えられた改竄作品です。",
+        realImage: "images/s1-q3-real.jpg",
+        fakeImage: "images/s1-q3-fake.jpg",
       },
       {
         title: "アテナイの学堂",
@@ -73,7 +82,10 @@ const STAGES = [
         explanation:
           "本物です。ラファエロがバチカン宮殿の「署名の間」に描いたフレスコ画。古代の哲学者たちの姿に、同時代の芸術家（ダ・ヴィンチ、ミケランジェロなど）の容貌を重ねたことでも知られています。",
         colors: ["#D4C5A9", "#CD853F", "#87CEEB", "#DEB887", "#BC8F8F"],
-        image: "images/s1-q4.jpg",
+        fakeExplanation:
+          "額縁のスタイルや全体の色調が本来のフレスコ画とは異なっています。ラファエロの精緻な遠近法表現に微妙なズレが生じています。",
+        realImage: "images/s1-q4-real.jpg",
+        fakeImage: "images/s1-q4-fake.jpg",
       },
       {
         title: "聖母子と二人の天使",
@@ -89,7 +101,10 @@ const STAGES = [
         explanation:
           "本物です。初期ルネサンスの巨匠リッピの代表作。聖母のモデルは修道女ルクレツィア・ブーティとされ、彼女との恋愛は有名な逸話です。弟子ボッティチェリに大きな影響を与えた優美な聖母像の傑作。ウフィツィ美術館所蔵。",
         colors: ["#E8D5B7", "#87CEEB", "#D4C5A9", "#DEB887", "#8B7355"],
-        image: "images/s1-q5.jpg",
+        fakeExplanation:
+          "聖母の表情や天使の位置関係に微妙な改変が施されています。リッピ特有の透明感のある肌の描写が不自然に変更されています。",
+        realImage: "images/s1-q5-real.jpg",
+        fakeImage: "images/s1-q5-fake.jpg",
       },
       {
         title: "東方三博士の礼拝",
@@ -105,7 +120,10 @@ const STAGES = [
         explanation:
           "本物です。ボッティチェリがメディチ家の後援のもとに描いた作品。コジモ・デ・メディチ、ロレンツォ豪華王らが三博士やその従者として描かれ、右端でこちらを見つめる金髪の青年がボッティチェリ自身です。テンペラによる淡く優美な色彩はボッティチェリの真骨頂です。",
         colors: ["#DAA520", "#8B4513", "#D4C5A9", "#CD853F", "#556B2F"],
-        image: "images/s1-q6.jpg",
+        fakeExplanation:
+          "人物の配置や衣装の色彩に変更が加えられています。ボッティチェリの自画像とされる右端の人物の表情が改変されています。",
+        realImage: "images/s1-q6-real.jpg",
+        fakeImage: "images/s1-q6-fake.jpg",
       },
       {
         title: "アダムの創造",
@@ -121,7 +139,10 @@ const STAGES = [
         explanation:
           "本物です。システィーナ礼拝堂天井画の中で最も象徴的な場面。ミケランジェロの彫刻家としての解剖学知識が、アダムの理想化された肉体に反映されています。神とアダムの指先がわずかに離れた構図は、西洋美術史上最も有名なイメージの一つです。",
         colors: ["#D4C5A9", "#CD853F", "#87CEEB", "#E8D5B7", "#A0522D"],
-        image: "images/s1-q7.jpg",
+        fakeExplanation:
+          "神とアダムの指先の距離や角度が原作と異なり、人体のプロポーションにも微妙な違いが見られます。ミケランジェロの解剖学的な正確さが損なわれています。",
+        realImage: "images/s1-q7-real.jpg",
+        fakeImage: "images/s1-q7-fake.jpg",
       },
       {
         title: "レヴィ家の饗宴",
@@ -137,7 +158,10 @@ const STAGES = [
         explanation:
           "本物です。元々「最後の晩餐」として描かれましたが、宗教的場面にふさわしくない人物（道化師、犬、酔った兵士など）を描いたとして異端審問にかけられました。ヴェロネーゼは題名を「レヴィ家の饗宴」に変更することで問題を回避した逸話が有名です。",
         colors: ["#DAA520", "#87CEEB", "#CD853F", "#F5F5DC", "#8B4513"],
-        image: "images/s1-q8.jpg",
+        fakeExplanation:
+          "建築の遠近法や人物の色彩バランスに不自然な点があります。ヴェロネーゼの華やかな色彩表現が微妙に変質しています。",
+        realImage: "images/s1-q8-real.jpg",
+        fakeImage: "images/s1-q8-fake.jpg",
       },
       {
         title: "ナスタージョ・デリ・オネスティの物語 第一話",
@@ -153,7 +177,10 @@ const STAGES = [
         explanation:
           "本物です。メディチ家の婚礼を祝う注文作品として描かれた4枚連作の第一場面。ボッティチェリの流麗な線描で物語の劇的場面が表現されています。文学作品の視覚化という点でルネサンス絵画の知性を示す作品。プラド美術館所蔵。",
         colors: ["#228B22", "#8B4513", "#87CEEB", "#DEB887", "#556B2F"],
-        image: "images/s1-q9.jpg",
+        fakeExplanation:
+          "松林の色調や人物の配置に改変が加えられています。ボッティチェリの流麗な線描による物語表現が不自然に変更されています。",
+        realImage: "images/s1-q9-real.jpg",
+        fakeImage: "images/s1-q9-fake.jpg",
       },
     ],
   },
@@ -181,7 +208,10 @@ const STAGES = [
         explanation:
           "本物です。レンブラントの最高傑作の一つ。集団肖像画でありながら、劇的なキアロスクーロ（明暗法）で物語性を持たせた革新的な作品です。実際には「夜」の場面ではなく、ニスの変色で暗く見えるようになりました。",
         colors: ["#1a1a2e", "#DAA520", "#8B4513", "#2C1810", "#F5F5DC"],
-        image: "images/s2-q1.jpg",
+        fakeExplanation:
+          "光と影のコントラストに違和感があり、中央人物を照らす劇的な光の配置がレンブラントの原作と微妙に異なっています。",
+        realImage: "images/s2-q1-real.jpg",
+        fakeImage: "images/s2-q1-fake.jpg",
       },
       {
         title: "真珠の耳飾りの少女",
@@ -197,7 +227,10 @@ const STAGES = [
         explanation:
           "本物です。フェルメールの代表作「北のモナ・リザ」とも呼ばれます。ウルトラマリン（ラピスラズリ由来）の青と鉛錫黄の対比、精緻な光の表現がフェルメールの真作であることを示しています。",
         colors: ["#00008B", "#FFD700", "#F5F5DC", "#1a1a2e", "#4682B4"],
-        image: "images/s2-q2.jpg",
+        fakeExplanation:
+          "少女のターバンの色や真珠の光り方に改変が見られます。フェルメール特有のウルトラマリンブルーの深みが不自然に変更されています。",
+        realImage: "images/s2-q2-real.jpg",
+        fakeImage: "images/s2-q2-fake.jpg",
       },
       {
         title: "聖マタイの召命",
@@ -213,7 +246,10 @@ const STAGES = [
         explanation:
           "本物です。カラヴァッジョの明暗法の革新を示す傑作。聖書の場面を当時の居酒屋のような場所に設定し、登場人物に同時代の衣装を着せるという斬新な手法は、バロック絵画に革命をもたらしました。",
         colors: ["#1a1a2e", "#8B4513", "#DAA520", "#2C1810", "#CD853F"],
-        image: "images/s2-q3.jpg",
+        fakeExplanation:
+          "光の差し込む角度や人物たちの衣装の色彩が原作と異なります。カラヴァッジョの劇的な明暗法の特徴が微妙に損なわれています。",
+        realImage: "images/s2-q3-real.jpg",
+        fakeImage: "images/s2-q3-fake.jpg",
       },
       {
         title: "ラス・メニーナス",
@@ -229,7 +265,10 @@ const STAGES = [
         explanation:
           "本物です。ベラスケスの最高傑作であり、西洋絵画史上最も分析された作品の一つ。鏡の反射、画家自身の自画像、複数の視点が交錯する複雑な構造は、絵画の可能性を拡張しました。",
         colors: ["#696969", "#D4C5A9", "#8B7355", "#2F4F4F", "#A0522D"],
-        image: "images/s2-q4.jpg",
+        fakeExplanation:
+          "鏡に映る人物や空間の遠近法に不自然な改変があります。ベラスケスの精密な空間構成が微妙にズレています。",
+        realImage: "images/s2-q4-real.jpg",
+        fakeImage: "images/s2-q4-fake.jpg",
       },
       {
         title: "デルフトの夜景",
@@ -245,7 +284,10 @@ const STAGES = [
         explanation:
           "贋作です。プルシアンブルー（紺青）は1704年にベルリンで偶然発見された顔料であり、1658年にフェルメールが使用することは不可能です。当時の青はウルトラマリンやアズライトに限られていました。",
         colors: ["#191970", "#000080", "#4169E1", "#1a1a2e", "#C0C0C0"],
-        image: "images/s2-q5.jpg",
+        fakeExplanation:
+          "色調や街並みの配置に改変が見られます。プルシアンブルーの使用など、時代にそぐわない顔料が使われた形跡があります。",
+        realImage: "images/s2-q5-real.jpg",
+        fakeImage: "images/s2-q5-fake.jpg",
       },
       {
         title: "聖パウロの回心",
@@ -261,7 +303,10 @@ const STAGES = [
         explanation:
           "贋作です。カラヴァッジョは板にテンペラではなく、カンヴァスに油彩で描くことを基本としました。また「均一で明るい光」「平面的」「繊細な線描」はすべてカラヴァッジョの画風（劇的な明暗、立体感、大胆な筆致）と正反対です。",
         colors: ["#F5F5DC", "#DEB887", "#D2B48C", "#FAEBD7", "#CD853F"],
-        image: "images/s2-q6.jpg",
+        fakeExplanation:
+          "人物の表情や光の当たり方に違和感があります。カラヴァッジョの特徴的な明暗対比が不自然に再現されています。",
+        realImage: "images/s2-q6-real.jpg",
+        fakeImage: "images/s2-q6-fake.jpg",
       },
       {
         title: "テュルプ博士の解剖学講義",
@@ -277,7 +322,10 @@ const STAGES = [
         explanation:
           "本物です。レンブラント26歳の出世作。集団肖像画でありながら、解剖という「事件」を通じて各人物に異なる表情と動きを与えた画期的な作品です。光源の処理もレンブラント特有のものです。",
         colors: ["#1a1a2e", "#2C1810", "#F5F5DC", "#8B7355", "#696969"],
-        image: "images/s2-q7.jpg",
+        fakeExplanation:
+          "解剖台の照明や周囲の人物の配置に微妙な変更が加えられています。レンブラントの光源処理に不自然な点があります。",
+        realImage: "images/s2-q7-real.jpg",
+        fakeImage: "images/s2-q7-fake.jpg",
       },
       {
         title: "放蕩息子の帰還",
@@ -293,7 +341,10 @@ const STAGES = [
         explanation:
           "本物です。レンブラント最晩年の傑作。新約聖書の「放蕩息子」のたとえ話を題材に、赦しと和解の普遍的テーマを深い精神性で描いています。晩年特有の厚塗りの筆致と、闇の中に浮かぶ光の表現はレンブラント芸術の到達点です。エルミタージュ美術館所蔵。",
         colors: ["#1a1a2e", "#8B4513", "#DAA520", "#2C1810", "#CD853F"],
-        image: "images/s2-q8.jpg",
+        fakeExplanation:
+          "父と子の手の位置関係や衣服の色調に改変が見られます。レンブラント晩年の厚塗り技法の質感が不自然に変更されています。",
+        realImage: "images/s2-q8-real.jpg",
+        fakeImage: "images/s2-q8-fake.jpg",
       },
       {
         title: "牛乳を注ぐ女",
@@ -309,7 +360,10 @@ const STAGES = [
         explanation:
           "本物です。フェルメールの代表作の一つ。窓から差し込む自然光による静謐な室内表現、パンの質感を表現するためのポワンティエ（点描的技法）の使用、ウルトラマリンブルーと鉛錫黄の対比はフェルメールの真作の証です。",
         colors: ["#4682B4", "#FFD700", "#F5F5DC", "#8B7355", "#DEB887"],
-        image: "images/s2-q9.jpg",
+        fakeExplanation:
+          "窓からの光の角度や牛乳の注がれ方に微妙な違いがあります。フェルメール特有の光と質感の表現に不自然さが見られます。",
+        realImage: "images/s2-q9-real.jpg",
+        fakeImage: "images/s2-q9-fake.jpg",
       },
     ],
   },
@@ -337,7 +391,10 @@ const STAGES = [
         explanation:
           "本物です。ヴァトーがアカデミー入会作品として提出した傑作。恋愛の甘美さと儚さを同時に表現する「フェート・ギャラント（雅宴画）」というジャンルを生み出しました。ルーヴル美術館所蔵。",
         colors: ["#E6E6FA", "#FFB6C1", "#90EE90", "#FFDAB9", "#87CEEB"],
-        image: "images/s3-q1.jpg",
+        fakeExplanation:
+          "恋人たちの配置や風景の色調に改変が施されています。ヴァトーの詩的で夢幻的な雰囲気が微妙に損なわれています。",
+        realImage: "images/s3-q1-real.jpg",
+        fakeImage: "images/s3-q1-fake.jpg",
       },
       {
         title: "ぶらんこ",
@@ -353,7 +410,10 @@ const STAGES = [
         explanation:
           "本物です。フラゴナールの最も有名な作品。軽妙で官能的な主題、動きのある構図、バラ色の色調はロココ絵画の精華です。注文主の要望に応えた作品で、恋愛の駆け引きを優美に描いています。",
         colors: ["#FFB6C1", "#90EE90", "#FFC0CB", "#98FB98", "#DDA0DD"],
-        image: "images/s3-q2.jpg",
+        fakeExplanation:
+          "女性のポーズや周囲の茂みの色彩に変更があります。フラゴナールの軽快で官能的な表現が不自然に改変されています。",
+        realImage: "images/s3-q2-real.jpg",
+        fakeImage: "images/s3-q2-fake.jpg",
       },
       {
         title: "ポンパドゥール夫人の肖像",
@@ -369,7 +429,10 @@ const STAGES = [
         explanation:
           "本物です。ブーシェはポンパドゥール夫人お気に入りの宮廷画家で、複数の肖像を残しています。緻密な布地の描写、バラ色の肌、装飾的な構成はブーシェの特徴そのものです。",
         colors: ["#FFB6C1", "#E6E6FA", "#F0E68C", "#DDA0DD", "#FAEBD7"],
-        image: "images/s3-q3.jpg",
+        fakeExplanation:
+          "ドレスの装飾や背景の花の配置に微妙な変更が見られます。ブーシェの精密な布地描写のタッチが異なっています。",
+        realImage: "images/s3-q3-real.jpg",
+        fakeImage: "images/s3-q3-fake.jpg",
       },
       {
         title: "ヴェルサイユの大庭園",
@@ -385,7 +448,10 @@ const STAGES = [
         explanation:
           "贋作です。まず、ヴァトーは1721年に亡くなっており1720年は最晩年ですが、より重要なのは画風の矛盾です。ヴァトーは「建築的正確さ」や「硬質な筆致」とは正反対の、夢幻的で柔らかい雅宴画を得意としました。",
         colors: ["#556B2F", "#808080", "#A9A9A9", "#696969", "#2F4F4F"],
-        image: "images/s3-q4.jpg",
+        fakeExplanation:
+          "庭園の構図や色彩に改変が加えられています。ヴァトーの柔らかい雅宴画の画風とは異なる硬質な表現が混在しています。",
+        realImage: "images/s3-q4-real.jpg",
+        fakeImage: "images/s3-q4-fake.jpg",
       },
       {
         title: "読書する少女",
@@ -401,7 +467,10 @@ const STAGES = [
         explanation:
           "本物です。フラゴナールの自由で素早い筆致が遺憾なく発揮された作品。レモンイエローの鮮やかさと、即興的な描写力はフラゴナール独特のものです。ワシントン・ナショナル・ギャラリー所蔵。",
         colors: ["#FFD700", "#FAFAD2", "#FFF8DC", "#FFB6C1", "#DEB887"],
-        image: "images/s3-q5.jpg",
+        fakeExplanation:
+          "ドレスの色や少女の表情に微妙な変更があります。フラゴナールの素早い筆致による自由闊達な表現に不自然さが見られます。",
+        realImage: "images/s3-q5-real.jpg",
+        fakeImage: "images/s3-q5-fake.jpg",
       },
       {
         title: "愛の寓意",
@@ -417,7 +486,10 @@ const STAGES = [
         explanation:
           "贋作です。「暗い背景」「ドラマティックな光」「筋肉質」「重厚な色彩」「厳格な構図」はバロック様式の特徴であり、ロココ画家ブーシェの軽やかで装飾的、パステル調の画風とは正反対です。",
         colors: ["#1a1a2e", "#8B4513", "#2C1810", "#DAA520", "#696969"],
-        image: "images/s3-q6.jpg",
+        fakeExplanation:
+          "色彩や構図がロココの特徴から逸脱しています。ブーシェの軽やかで装飾的な画風とは異質な重厚さが混入しています。",
+        realImage: "images/s3-q6-real.jpg",
+        fakeImage: "images/s3-q6-fake.jpg",
       },
       {
         title: "ディアナの水浴",
@@ -433,7 +505,10 @@ const STAGES = [
         explanation:
           "本物です。ブーシェの代表作の一つ。理想化された女性の肉体美、パステル調の色彩、装飾的な構成はロココ絵画の典型です。ルーヴル美術館に所蔵されています。",
         colors: ["#FFB6C1", "#E6E6FA", "#FFDAB9", "#90EE90", "#87CEEB"],
-        image: "images/s3-q7.jpg",
+        fakeExplanation:
+          "女性の肌の色調や背景の牧歌的風景に微妙な改変があります。ブーシェのパステル調の色彩感覚が変質しています。",
+        realImage: "images/s3-q7-real.jpg",
+        fakeImage: "images/s3-q7-fake.jpg",
       },
       {
         title: "マリー・アントワネットの庭園",
@@ -449,7 +524,10 @@ const STAGES = [
         explanation:
           "贋作です。アクリルガッシュは20世紀後半に開発された画材であり、18世紀のフラゴナールが使用することは不可能です。当時の画材は油彩、テンペラ、水彩、パステルなどに限られていました。",
         colors: ["#FF69B4", "#00FF7F", "#FF6347", "#4169E1", "#FFD700"],
-        image: "images/s3-q8.jpg",
+        fakeExplanation:
+          "花々の色彩や人物の衣装に不自然な鮮やかさがあります。18世紀の画材では出せない発色が含まれている贋作です。",
+        realImage: "images/s3-q8-real.jpg",
+        fakeImage: "images/s3-q8-fake.jpg",
       },
       {
         title: "田園の音楽会",
@@ -465,7 +543,10 @@ const STAGES = [
         explanation:
           "本物です。ヴァトーの雅宴画の典型的な作品。音楽、自然、恋愛、そしてどこか物悲しい雰囲気の融合はヴァトー独自のものです。彼の短い生涯（36歳で死去）の中で生み出された珠玉の一作。",
         colors: ["#E6E6FA", "#DEB887", "#90EE90", "#FFDAB9", "#D8BFD8"],
-        image: "images/s3-q9.jpg",
+        fakeExplanation:
+          "人物の配置や木陰の色調に微妙な変更が加えられています。ヴァトーの憂愁を帯びた詩的な雰囲気が損なわれています。",
+        realImage: "images/s3-q9-real.jpg",
+        fakeImage: "images/s3-q9-fake.jpg",
       },
     ],
   },
@@ -493,7 +574,10 @@ const STAGES = [
         explanation:
           "本物です。「印象派」の名称の由来となった歴史的作品。1874年の第1回印象派展に出品され、批評家ルイ・ルロワが「印象に過ぎない」と揶揄したことから運動全体の名称となりました。",
         colors: ["#FF8C00", "#4682B4", "#87CEEB", "#FFD700", "#708090"],
-        image: "images/s4-q1.jpg",
+        fakeExplanation:
+          "太陽の色や水面の反射に改変が見られます。モネの素早い筆致による光の捉え方が不自然に変更されています。",
+        realImage: "images/s4-q1-real.jpg",
+        fakeImage: "images/s4-q1-fake.jpg",
       },
       {
         title: "ムーラン・ド・ラ・ギャレットの舞踏会",
@@ -509,7 +593,10 @@ const STAGES = [
         explanation:
           "本物です。ルノワールの代表作。木漏れ日の斑点状の光、暖かみのある色彩、幸福感に満ちた人物描写はルノワールの真骨頂です。オルセー美術館の至宝の一つ。",
         colors: ["#FFD700", "#4169E1", "#FFB6C1", "#90EE90", "#DDA0DD"],
-        image: "images/s4-q2.jpg",
+        fakeExplanation:
+          "木漏れ日の表現や人物の色彩に微妙な違いがあります。ルノワールの暖かみのある幸福感あふれる色調が変質しています。",
+        realImage: "images/s4-q2-real.jpg",
+        fakeImage: "images/s4-q2-fake.jpg",
       },
       {
         title: "踊りの花形",
@@ -525,7 +612,10 @@ const STAGES = [
         explanation:
           "本物です。ドガはバレエを主題とした作品を多数残しました。写真的な瞬間の切り取り、斜めの視点、大胆なトリミングはドガの革新的な構図感覚を示しています。",
         colors: ["#FFFAF0", "#FFD700", "#FFB6C1", "#90EE90", "#F0E68C"],
-        image: "images/s4-q3.jpg",
+        fakeExplanation:
+          "バレリーナのポーズや舞台照明の表現に改変が施されています。ドガの斜めの視点による大胆な構図に不自然な変更があります。",
+        realImage: "images/s4-q3-real.jpg",
+        fakeImage: "images/s4-q3-fake.jpg",
       },
       {
         title: "パリの大通り、冬",
@@ -541,7 +631,10 @@ const STAGES = [
         explanation:
           "贋作です。モネは「印象」を重視し、対象の精密な再現ではなく、光と色彩の瞬間的な効果を素早い筆致で捉えることを追求しました。「設計図のように精密」「写真のような写実性」はモネの画風と正反対です。",
         colors: ["#808080", "#A9A9A9", "#C0C0C0", "#D3D3D3", "#696969"],
-        image: "images/s4-q4.jpg",
+        fakeExplanation:
+          "建物や人物の描写に改変が見られます。モネの「印象」を重視した筆致とは異なる精密すぎる表現が混入しています。",
+        realImage: "images/s4-q4-real.jpg",
+        fakeImage: "images/s4-q4-fake.jpg",
       },
       {
         title: "睡蓮",
@@ -557,7 +650,10 @@ const STAGES = [
         explanation:
           "本物です。モネは晩年、ジヴェルニーの自宅庭園の睡蓮を主題に約250点もの連作を制作しました。水面への反射と睡蓮が一体化する表現は、後の抽象表現主義にも影響を与えました。",
         colors: ["#87CEEB", "#228B22", "#FFB6C1", "#4682B4", "#90EE90"],
-        image: "images/s4-q5.jpg",
+        fakeExplanation:
+          "睡蓮の配置や水面の反射に微妙な違いがあります。モネの筆触の重なりによる光と色彩の表現が不自然に変更されています。",
+        realImage: "images/s4-q5-real.jpg",
+        fakeImage: "images/s4-q5-fake.jpg",
       },
       {
         title: "セーヌ川の帆船",
@@ -573,7 +669,10 @@ const STAGES = [
         explanation:
           "贋作です。ルノワールは暖かく豊かな色彩を愛した画家であり、「モノトーンの灰色」「冷たく陰鬱」は彼の画風と矛盾します。また印象派は素早く大胆な筆触を特徴とし、「滑らかな表面仕上げ」は印象派の技法に反します。",
         colors: ["#696969", "#808080", "#A9A9A9", "#778899", "#2F4F4F"],
-        image: "images/s4-q6.jpg",
+        fakeExplanation:
+          "色調や筆致に改変が見られます。ルノワールの暖かく豊かな色彩が不自然なモノトーンに変更されている贋作です。",
+        realImage: "images/s4-q6-real.jpg",
+        fakeImage: "images/s4-q6-fake.jpg",
       },
       {
         title: "サン＝ラザール駅",
@@ -589,7 +688,10 @@ const STAGES = [
         explanation:
           "本物です。モネは駅という近代的主題に挑み、蒸気と光の相互作用を見事に描きました。同じ駅を異なる角度や時間帯で12点の連作として制作。「連作」という手法の初期的な試みです。",
         colors: ["#4682B4", "#708090", "#87CEEB", "#B0C4DE", "#FFD700"],
-        image: "images/s4-q7.jpg",
+        fakeExplanation:
+          "蒸気や光の表現に微妙な違いがあります。モネの近代都市を捉える独自の視点と筆触が改変されています。",
+        realImage: "images/s4-q7-real.jpg",
+        fakeImage: "images/s4-q7-fake.jpg",
       },
       {
         title: "パリのカフェテラスの夜",
@@ -605,7 +707,10 @@ const STAGES = [
         explanation:
           "贋作です。「点描法」「科学的な色彩理論」「厳密な色の配置」はスーラやシニャックの新印象派（点描主義）の特徴であり、ドガの技法とは異なります。ドガは素早いスケッチ的な筆致と独自の構図で知られています。",
         colors: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF8C00"],
-        image: "images/s4-q8.jpg",
+        fakeExplanation:
+          "色彩の配置や筆致に印象派とは異なる新印象派的な点描法が混入しています。ドガの技法との矛盾が見られます。",
+        realImage: "images/s4-q8-real.jpg",
+        fakeImage: "images/s4-q8-fake.jpg",
       },
       {
         title: "草上の昼食",
@@ -621,7 +726,10 @@ const STAGES = [
         explanation:
           "本物です。マネの問題作にして近代絵画の出発点。裸体の女性が鑑賞者をまっすぐ見つめる大胆さと、伝統的な陰影法を排した平坦な描法が美術界に衝撃を与えました。印象派の先駆者としてのマネの革新性を示す作品です。",
         colors: ["#228B22", "#F5F5DC", "#FFB6C1", "#2F4F4F", "#8B4513"],
-        image: "images/s4-q9.jpg",
+        fakeExplanation:
+          "構図や人物の表情に微妙な改変があります。マネの平坦な色面と明確な輪郭線による革新的手法が不自然に変更されています。",
+        realImage: "images/s4-q9-real.jpg",
+        fakeImage: "images/s4-q9-fake.jpg",
       },
     ],
   },
@@ -649,7 +757,10 @@ const STAGES = [
         explanation:
           "本物です。ゴッホの最も有名な作品の一つ。精神病院滞在中に制作され、渦巻くような厚塗りの筆触、鮮烈な青と黄の対比はゴッホの内面の激しさを映し出しています。MoMA（ニューヨーク近代美術館）所蔵。",
         colors: ["#191970", "#FFD700", "#4169E1", "#00008B", "#228B22"],
-        image: "images/s5-q1.jpg",
+        fakeExplanation:
+          "夜空の渦巻きの形や星の配置に微妙な変更があります。ゴッホの厚塗り筆致による激しいうねりが不自然に改変されています。",
+        realImage: "images/s5-q1-real.jpg",
+        fakeImage: "images/s5-q1-fake.jpg",
       },
       {
         title: "タヒチの女たち",
@@ -665,7 +776,10 @@ const STAGES = [
         explanation:
           "本物です。ゴーギャンがタヒチに渡った最初の年の作品。「原始」の中に人間の本質を求め、象徴的な色彩と平面的な構成で「文明化された」西洋絵画に対抗しました。",
         colors: ["#DC143C", "#FF8C00", "#4682B4", "#228B22", "#8B4513"],
-        image: "images/s5-q2.jpg",
+        fakeExplanation:
+          "女性の配置や背景の色彩に改変が施されています。ゴーギャンの象徴的な色面構成が微妙に変質しています。",
+        realImage: "images/s5-q2-real.jpg",
+        fakeImage: "images/s5-q2-fake.jpg",
       },
       {
         title: "サント＝ヴィクトワール山",
@@ -681,7 +795,10 @@ const STAGES = [
         explanation:
           "本物です。セザンヌはこの山を生涯にわたって約80回描きました。自然の形態を幾何学的に分析し再構成する手法は、ピカソやブラックのキュビスムに直接的な影響を与え、「近代絵画の父」と呼ばれる所以です。",
         colors: ["#87CEEB", "#228B22", "#DEB887", "#4682B4", "#8B7355"],
-        image: "images/s5-q3.jpg",
+        fakeExplanation:
+          "山の形態や色面の構成に微妙な違いがあります。セザンヌの幾何学的な自然の分析が不自然に変更されています。",
+        realImage: "images/s5-q3-real.jpg",
+        fakeImage: "images/s5-q3-fake.jpg",
       },
       {
         title: "グランド・ジャット島の日曜日の午後",
@@ -697,7 +814,10 @@ const STAGES = [
         explanation:
           "本物です。スーラが約2年をかけて完成させた記念碑的大作。シュヴルールの色彩対比の法則に基づき、純色の点を並置して視覚的混合を実現する点描法を確立しました。シカゴ美術館の至宝です。",
         colors: ["#228B22", "#87CEEB", "#FFD700", "#FF69B4", "#DDA0DD"],
-        image: "images/s5-q4.jpg",
+        fakeExplanation:
+          "人物の配置や色点の密度に改変が見られます。スーラの科学的な点描法による色彩混合が不自然に再現されています。",
+        realImage: "images/s5-q4-real.jpg",
+        fakeImage: "images/s5-q4-fake.jpg",
       },
       {
         title: "プロヴァンスの収穫",
@@ -713,7 +833,10 @@ const STAGES = [
         explanation:
           "本物です。ゴッホがアルル時代に描いた収穫連作の一つ。南仏の強い日差しに触発された黄色と青の鮮烈な対比、厚塗りの力強い筆触はこの時期の特徴です。ゴッホ美術館に所蔵されています。",
         colors: ["#FFD700", "#4169E1", "#DAA520", "#87CEEB", "#FF8C00"],
-        image: "images/s5-q5.jpg",
+        fakeExplanation:
+          "麦畑の色調や空の表現に微妙な違いがあります。ゴッホのアルル時代特有の鮮烈な黄色と青の対比が変質しています。",
+        realImage: "images/s5-q5-real.jpg",
+        fakeImage: "images/s5-q5-fake.jpg",
       },
       {
         title: "アルルの星空",
@@ -729,7 +852,10 @@ const STAGES = [
         explanation:
           "贋作です。「渦巻く夜空」「糸杉」「厚塗り」「激しいうねりのある筆致」「強い感情」はすべてゴッホの特徴であり、セザンヌの画風ではありません。セザンヌは冷静で分析的な形態の探求を特徴とし、感情的な表現は控えました。",
         colors: ["#191970", "#FFD700", "#4169E1", "#00008B", "#228B22"],
-        image: "images/s5-q6.jpg",
+        fakeExplanation:
+          "描写スタイルがセザンヌではなくゴッホの特徴を示しています。渦巻く筆致と感情的表現はセザンヌの冷静な形態分析と矛盾します。",
+        realImage: "images/s5-q6-real.jpg",
+        fakeImage: "images/s5-q6-fake.jpg",
       },
       {
         title: "カード遊びをする人々",
@@ -745,7 +871,10 @@ const STAGES = [
         explanation:
           "本物です。セザンヌが同じ主題で5点描いた連作の一つ。人物と空間を幾何学的に構成し、落ち着いた色調で統一する手法はセザンヌの真骨頂です。2011年にカタール王室が別バージョンを史上最高額で購入したことでも知られます。",
         colors: ["#8B7355", "#A0522D", "#DEB887", "#CD853F", "#556B2F"],
-        image: "images/s5-q7.jpg",
+        fakeExplanation:
+          "人物のプロポーションやテーブルの構成に微妙な改変があります。セザンヌの幾何学的な人物分析が不自然に変更されています。",
+        realImage: "images/s5-q7-real.jpg",
+        fakeImage: "images/s5-q7-fake.jpg",
       },
       {
         title: "楽園の門",
@@ -761,7 +890,10 @@ const STAGES = [
         explanation:
           "贋作です。ゴーギャンは写実を拒否し、象徴的な色彩と平面的な構成を追求した画家です。「スーパーリアリズム」「写真のように正確」「厳密な一点透視図法」はゴーギャンの理念と完全に矛盾します。",
         colors: ["#228B22", "#8B4513", "#87CEEB", "#808080", "#696969"],
-        image: "images/s5-q8.jpg",
+        fakeExplanation:
+          "描写が写実的すぎ、ゴーギャンの象徴的・平面的な表現とは矛盾する精密さが見られます。",
+        realImage: "images/s5-q8-real.jpg",
+        fakeImage: "images/s5-q8-fake.jpg",
       },
       {
         title: "自画像（耳を包帯でまいた自画像）",
@@ -777,7 +909,10 @@ const STAGES = [
         explanation:
           "本物です。ゴッホが自らの耳を切った直後に描いた自画像。背景の浮世絵はゴッホのジャポニスム（日本美術への傾倒）を示しています。精神的危機の中での制作という歴史的事実とも合致する作品です。",
         colors: ["#2F4F4F", "#FF6347", "#F5F5DC", "#4682B4", "#8B7355"],
-        image: "images/s5-q9.jpg",
+        fakeExplanation:
+          "包帯の位置や背景の浮世絵の描写に微妙な違いがあります。ゴッホの自画像特有の直接的な表現が改変されています。",
+        realImage: "images/s5-q9-real.jpg",
+        fakeImage: "images/s5-q9-fake.jpg",
       },
     ],
   },
@@ -805,7 +940,10 @@ const STAGES = [
         explanation:
           "本物です。ムンクの代表作で、複数のバージョンが存在します。「自然を貫く果てしない叫びを感じた」というムンク自身の体験に基づく作品。テンペラとクレヨンという混合技法も記録と一致します。",
         colors: ["#FF4500", "#FF6347", "#FFD700", "#191970", "#2F4F4F"],
-        image: "images/s6-q1.jpg",
+        fakeExplanation:
+          "人物の表情や背景の波打つ線に微妙な変更があります。ムンクの実存的不安の表現が不自然に改変されています。",
+        realImage: "images/s6-q1-real.jpg",
+        fakeImage: "images/s6-q1-fake.jpg",
       },
       {
         title: "ベルリンの街路風景",
@@ -821,7 +959,10 @@ const STAGES = [
         explanation:
           "本物です。キルヒナーの代表的な都市風景画。尖った形態、不安定な空間構成、神経質な色彩で近代都市の不安を表現しています。ブリュッケ（橋）派の目指した「新しい表現」を体現する作品です。",
         colors: ["#000000", "#FF69B4", "#4169E1", "#FFD700", "#228B22"],
-        image: "images/s6-q2.jpg",
+        fakeExplanation:
+          "女性たちの形態や色彩に微妙な違いがあります。キルヒナーの鋭角的で不安定な表現が変質しています。",
+        realImage: "images/s6-q2-real.jpg",
+        fakeImage: "images/s6-q2-fake.jpg",
       },
       {
         title: "コンポジション VII",
@@ -837,7 +978,10 @@ const STAGES = [
         explanation:
           "本物です。カンディンスキーが最も複雑で完成度が高いと自負した作品。30以上の習作を経て制作され、色彩と形態による「視覚の音楽」を実現しました。抽象絵画の金字塔です。",
         colors: ["#FF0000", "#4169E1", "#FFD700", "#228B22", "#9370DB"],
-        image: "images/s6-q3.jpg",
+        fakeExplanation:
+          "色彩の配置や抽象的形態に改変が施されています。カンディンスキーの音楽的な色と線のハーモニーが不自然に変更されています。",
+        realImage: "images/s6-q3-real.jpg",
+        fakeImage: "images/s6-q3-fake.jpg",
       },
       {
         title: "抱擁",
@@ -853,7 +997,10 @@ const STAGES = [
         explanation:
           "本物です。シーレの代表作の一つ。歪んだ身体表現、鋭い輪郭線、露わで生々しい肉体描写はシーレの独自様式です。師であるクリムトの装飾性を脱却し、より直接的な感情表現を追求しました。",
         colors: ["#DEB887", "#8B4513", "#F5F5DC", "#FF6347", "#2F4F4F"],
-        image: "images/s6-q4.jpg",
+        fakeExplanation:
+          "人物の輪郭線や肉体表現に微妙な変更があります。シーレ特有の歪んだ身体表現と鋭い線描が改変されています。",
+        realImage: "images/s6-q4-real.jpg",
+        fakeImage: "images/s6-q4-fake.jpg",
       },
       {
         title: "青い馬の塔",
@@ -869,7 +1016,10 @@ const STAGES = [
         explanation:
           "本物です。マルクの代表作。「青騎士」グループの理念を体現し、青は「精神性」を、馬は「純粋さ」を象徴しています。第二次大戦中に消失し、現在は写真でのみ知ることができます。",
         colors: ["#4169E1", "#00008B", "#87CEEB", "#228B22", "#FFD700"],
-        image: "images/s6-q5.jpg",
+        fakeExplanation:
+          "馬の青色の色調や構図のバランスに微妙な違いがあります。マルクの精神性を象徴する色彩表現が変質しています。",
+        realImage: "images/s6-q5-real.jpg",
+        fakeImage: "images/s6-q5-fake.jpg",
       },
       {
         title: "ミュンヘンの静物",
@@ -885,7 +1035,10 @@ const STAGES = [
         explanation:
           "贋作です。1910年のカンディンスキーはすでに抽象への道を歩み始めており、「17世紀オランダ絵画のように精密に写実的」な描法に戻ることはありえません。同年、彼は最初の抽象水彩画を制作しています。",
         colors: ["#8B7355", "#556B2F", "#CD853F", "#DEB887", "#A0522D"],
-        image: "images/s6-q6.jpg",
+        fakeExplanation:
+          "描写スタイルが抽象に向かうカンディンスキーの1910年の画風と矛盾する写実的要素が含まれています。",
+        realImage: "images/s6-q6-real.jpg",
+        fakeImage: "images/s6-q6-fake.jpg",
       },
       {
         title: "月夜の浜辺",
@@ -901,7 +1054,10 @@ const STAGES = [
         explanation:
           "本物です。ムンクは「生命のフリーズ」と呼ぶ連作の中で、孤独、不安、愛、死をテーマに繰り返し描きました。月夜の浜辺は彼が好んだモチーフの一つで、青い色調による孤独の表現はムンクの真骨頂です。",
         colors: ["#191970", "#4682B4", "#C0C0C0", "#000080", "#F5F5DC"],
-        image: "images/s6-q7.jpg",
+        fakeExplanation:
+          "月光の反射や人物の影に微妙な変更があります。ムンクの青い色調による孤独の表現が不自然に改変されています。",
+        realImage: "images/s6-q7-real.jpg",
+        fakeImage: "images/s6-q7-fake.jpg",
       },
       {
         title: "春の目覚め",
@@ -917,7 +1073,10 @@ const STAGES = [
         explanation:
           "贋作です。シーレは歪んだ人体、鋭い輪郭線、生々しい感情表現を特徴とする画家です。「淡い色調」「穏やかで牧歌的」「柔らかな輪郭線」はシーレの激しく内省的な画風と正反対です。また、彼が人物なしの純粋な風景画を描くことは稀です。",
         colors: ["#90EE90", "#FFB6C1", "#87CEEB", "#FFDAB9", "#E6E6FA"],
-        image: "images/s6-q8.jpg",
+        fakeExplanation:
+          "色調や構図がシーレの激しい表現主義的画風とは矛盾する穏やかさを示しています。",
+        realImage: "images/s6-q8-real.jpg",
+        fakeImage: "images/s6-q8-fake.jpg",
       },
       {
         title: "ゲルニカの習作",
@@ -933,7 +1092,10 @@ const STAGES = [
         explanation:
           "贋作です。「ゲルニカ」はスペイン内戦中の1937年の爆撃事件を題材にピカソが描いた作品です。マルクは1916年に第一次大戦で戦死しており、1937年の事件の「習作」を描くことは時系列的に不可能です。",
         colors: ["#000000", "#808080", "#C0C0C0", "#FFFFFF", "#696969"],
-        image: "images/s6-q9.jpg",
+        fakeExplanation:
+          "歴史的に不可能な要素が含まれています。マルクの没年と「ゲルニカ」の歴史的背景が矛盾します。",
+        realImage: "images/s6-q9-real.jpg",
+        fakeImage: "images/s6-q9-fake.jpg",
       },
     ],
   },
@@ -961,7 +1123,10 @@ const STAGES = [
         explanation:
           "本物です。ダリの最も有名な作品。「柔らかい時計」のモチーフはカマンベールチーズが溶ける様子から着想を得たとダリ自身が語っています。小さな画面に驚異的な精密さで夢の世界を描き出す技法はダリの真骨頂です。",
         colors: ["#DEB887", "#87CEEB", "#8B7355", "#CD853F", "#4682B4"],
-        image: "images/s7-q1.jpg",
+        fakeExplanation:
+          "溶けた時計の形状や砂漠の色調に微妙な変更があります。ダリの超写実的な描写力による夢の表現が改変されています。",
+        realImage: "images/s7-q1-real.jpg",
+        fakeImage: "images/s7-q1-fake.jpg",
       },
       {
         title: "イメージの裏切り",
@@ -977,7 +1142,10 @@ const STAGES = [
         explanation:
           "本物です。マグリットの代表作。「絵に描かれたパイプは実物のパイプではない」という当たり前の事実を提示することで、表象と現実の関係を根本から問い直しました。言語哲学者フーコーも論考を捧げた作品です。",
         colors: ["#DEB887", "#8B4513", "#F5F5DC", "#2F4F4F", "#A0522D"],
-        image: "images/s7-q2.jpg",
+        fakeExplanation:
+          "パイプの形やテキストの配置に微妙な違いがあります。マグリットの知的で正確なイメージ構成が不自然に変更されています。",
+        realImage: "images/s7-q2-real.jpg",
+        fakeImage: "images/s7-q2-fake.jpg",
       },
       {
         title: "カタルーニャの風景",
@@ -993,7 +1161,10 @@ const STAGES = [
         explanation:
           "本物です。ミロがシュルレアリスムに接近した重要な転換点の作品。現実の風景を有機的な記号に解体し再構成する手法は、以後のミロの独自様式を確立しました。MoMA所蔵。",
         colors: ["#DAA520", "#FFD700", "#FF0000", "#228B22", "#000000"],
-        image: "images/s7-q3.jpg",
+        fakeExplanation:
+          "有機的形態の配置や色彩に改変が施されています。ミロの夢幻的な記号世界が微妙に変質しています。",
+        realImage: "images/s7-q3-real.jpg",
+        fakeImage: "images/s7-q3-fake.jpg",
       },
       {
         title: "人の子",
@@ -1009,7 +1180,10 @@ const STAGES = [
         explanation:
           "本物です。マグリットが繰り返し描いたボウラーハットの男のモチーフの代表作。「見えるものはいつも別のものを隠している」というマグリットの哲学を体現。自画像であると同時に、すべての人間の匿名性を象徴しています。",
         colors: ["#87CEEB", "#228B22", "#2F4F4F", "#696969", "#808080"],
-        image: "images/s7-q4.jpg",
+        fakeExplanation:
+          "りんごの位置やスーツの色調に微妙な違いがあります。マグリットの日常的イメージの組み合わせによる違和感が変更されています。",
+        realImage: "images/s7-q4-real.jpg",
+        fakeImage: "images/s7-q4-fake.jpg",
       },
       {
         title: "夢の解剖学",
@@ -1025,7 +1199,10 @@ const STAGES = [
         explanation:
           "贋作です。アクリル絵具が画材として市販されたのは1950年代以降です。1935年にダリがアクリルを使用することは不可能でした。ダリは油彩を主に使用しており、画材の時代考証が合いません。",
         colors: ["#DEB887", "#FF4500", "#FFD700", "#87CEEB", "#DC143C"],
-        image: "images/s7-q5.jpg",
+        fakeExplanation:
+          "画材や色の発色にダリの時代には不可能な特徴が見られます。アクリル絵具の使用は時代考証的に矛盾します。",
+        realImage: "images/s7-q5-real.jpg",
+        fakeImage: "images/s7-q5-fake.jpg",
       },
       {
         title: "透視（大家族）",
@@ -1041,7 +1218,10 @@ const STAGES = [
         explanation:
           "本物です。マグリットの代表的手法である「内と外の反転」が見事に実現された作品。鳥の形をした「窓」から別の現実が見えるという発想は、マグリットの知的なシュルレアリスムの真髄です。",
         colors: ["#808080", "#87CEEB", "#FFFFFF", "#4682B4", "#A9A9A9"],
-        image: "images/s7-q6.jpg",
+        fakeExplanation:
+          "鳥のシルエットや内外の空の色調に微妙な改変があります。マグリットの反転手法の精密さが損なわれています。",
+        realImage: "images/s7-q6-real.jpg",
+        fakeImage: "images/s7-q6-fake.jpg",
       },
       {
         title: "セレベスの象",
@@ -1057,7 +1237,10 @@ const STAGES = [
         explanation:
           "本物です。エルンストの代表作。アフリカの穀物貯蔵庫の写真から着想を得た機械的な象は、エルンストのコラージュ的発想を絵画に転用した初期シュルレアリスムの傑作です。テート・モダン所蔵。",
         colors: ["#808080", "#556B2F", "#FF6347", "#2F4F4F", "#DAA520"],
-        image: "images/s7-q7.jpg",
+        fakeExplanation:
+          "機械的な象の形態やコラージュ的要素に変更が加えられています。エルンストの独自の造形感覚が改変されています。",
+        realImage: "images/s7-q7-real.jpg",
+        fakeImage: "images/s7-q7-fake.jpg",
       },
       {
         title: "無意識の庭園",
@@ -1073,7 +1256,10 @@ const STAGES = [
         explanation:
           "贋作です。ミロは「絵画の暗殺」を宣言し、従来の写実を徹底的に拒否した画家です。「植物図鑑のように精密」「科学的に正確」「厳密な遠近法」はミロの有機的で自由な表現とは完全に矛盾します。",
         colors: ["#228B22", "#556B2F", "#8B7355", "#90EE90", "#DEB887"],
-        image: "images/s7-q8.jpg",
+        fakeExplanation:
+          "描写がミロの有機的で自由な表現とは矛盾する写実的精密さを示しています。",
+        realImage: "images/s7-q8-real.jpg",
+        fakeImage: "images/s7-q8-fake.jpg",
       },
       {
         title: "燃えるキリン",
@@ -1089,7 +1275,10 @@ const STAGES = [
         explanation:
           "本物です。ダリがスペイン内戦を予感して描いた作品。「引き出し付きの人体」はフロイトの無意識理論の視覚化であり、「燃えるキリン」は戦争の恐怖を象徴しています。ダリの偏執狂的批判的方法の典型です。",
         colors: ["#FF4500", "#FFD700", "#87CEEB", "#DEB887", "#DC143C"],
-        image: "images/s7-q9.jpg",
+        fakeExplanation:
+          "燃えるキリンや引き出し付き人体の表現に微妙な変更があります。ダリのフロイト的象徴が改変されています。",
+        realImage: "images/s7-q9-real.jpg",
+        fakeImage: "images/s7-q9-fake.jpg",
       },
     ],
   },
@@ -1116,7 +1305,10 @@ const STAGES = [
         explanation:
           "本物です。北斎70歳頃の代表作で、冨嶽三十六景シリーズの一枚。当時輸入された化学顔料「ベロ藍（プルシアンブルー）」を効果的に使用し、西洋の遠近法と日本の伝統的表現を融合させました。世界で最も有名な日本美術作品の一つです。",
         colors: ["#1B3A5C", "#4682B4", "#F5F5DC", "#2F5F2F", "#87CEEB"],
-        image: "images/s8-q1.jpg",
+        fakeExplanation:
+          "波の形状や富士山の位置に微妙な違いがあります。北斎のベロ藍による大胆な波の表現が不自然に改変されています。",
+        realImage: "images/s8-q1-real.jpg",
+        fakeImage: "images/s8-q1-fake.jpg",
       },
       {
         title: "東海道五十三次 日本橋 朝之景",
@@ -1132,7 +1324,10 @@ const STAGES = [
         explanation:
           "本物です。広重の出世作「東海道五十三次」の起点となる一枚。空気や湿度を感じさせる叙情的な風景表現は広重の真骨頂であり、ゴッホやモネにも影響を与えました。",
         colors: ["#F0E68C", "#FFB6C1", "#87CEEB", "#DEB887", "#2F5F2F"],
-        image: "images/s8-q2.jpg",
+        fakeExplanation:
+          "朝靄の表現や人物の配置に微妙な変更があります。広重の叙情的な空気感の描写が改変されています。",
+        realImage: "images/s8-q2-real.jpg",
+        fakeImage: "images/s8-q2-fake.jpg",
       },
       {
         title: "ビードロを吹く娘",
@@ -1148,7 +1343,10 @@ const STAGES = [
         explanation:
           "本物です。歌麿の代表作。「大首絵」と呼ばれる胸から上のクローズアップ構図と、雲母（きら）摺による銀色の背景は歌麿の革新的な手法です。女性の内面の感情を繊細に描き出す歌麿の真骨頂。",
         colors: ["#C0C0C0", "#FFB6C1", "#F5F5DC", "#DDA0DD", "#E6E6FA"],
-        image: "images/s8-q3.jpg",
+        fakeExplanation:
+          "ビードロや女性の表情に微妙な違いがあります。歌麿の繊細な美人画の表現が不自然に変更されています。",
+        realImage: "images/s8-q3-real.jpg",
+        fakeImage: "images/s8-q3-fake.jpg",
       },
       {
         title: "三代目大谷鬼次の奴江戸兵衛",
@@ -1164,7 +1362,10 @@ const STAGES = [
         explanation:
           "本物です。写楽の最も有名な作品。わずか10ヶ月ほどの活動期間に約145点の作品を残した謎の絵師。大胆なデフォルメと心理描写は、当時の役者絵の常識を覆す革新的表現でした。",
         colors: ["#696969", "#DEB887", "#C41E3A", "#F5F5DC", "#2C1810"],
-        image: "images/s8-q4.jpg",
+        fakeExplanation:
+          "役者の表情や衣装のデフォルメに微妙な改変があります。写楽の鋭い心理描写が変質しています。",
+        realImage: "images/s8-q4-real.jpg",
+        fakeImage: "images/s8-q4-fake.jpg",
       },
       {
         title: "冨嶽三十六景 凱風快晴",
@@ -1180,7 +1381,10 @@ const STAGES = [
         explanation:
           "本物です。「赤富士」の通称で親しまれる北斎の代表作。朝焼けの一瞬を捉えたシンプルな構図の中に、富士の荘厳さと自然の壮大さが凝縮されています。冨嶽三十六景シリーズの一枚。",
         colors: ["#C41E3A", "#228B22", "#87CEEB", "#F5F5DC", "#8B4513"],
-        image: "images/s8-q5.jpg",
+        fakeExplanation:
+          "富士山の赤色の色調や裾野の緑に微妙な違いがあります。北斎の朝焼け表現の繊細さが改変されています。",
+        realImage: "images/s8-q5-real.jpg",
+        fakeImage: "images/s8-q5-fake.jpg",
       },
       {
         title: "名所江戸百景 亀戸梅屋舗",
@@ -1196,7 +1400,10 @@ const STAGES = [
         explanation:
           "本物です。広重晩年の傑作シリーズ「名所江戸百景」の一枚。大胆な手前の梅の枝の構図はゴッホが油彩で模写したことでも知られます。日本美術のヨーロッパへの影響（ジャポニスム）を示す象徴的な作品です。",
         colors: ["#C41E3A", "#8B4513", "#FF6347", "#228B22", "#F0E68C"],
-        image: "images/s8-q6.jpg",
+        fakeExplanation:
+          "梅の枝の配置や背景の赤い空の色調に微妙な変更があります。広重の大胆な構図と色使いが不自然に変更されています。",
+        realImage: "images/s8-q6-real.jpg",
+        fakeImage: "images/s8-q6-fake.jpg",
       },
       {
         title: "江戸名所 品川の夕映え",
@@ -1212,7 +1419,10 @@ const STAGES = [
         explanation:
           "贋作です。北斎は木版画と肉筆画（紙や絹に岩絵具や墨で描く）を主な手法としており、カンヴァスに油彩で描くことはありません。江戸時代の日本では油彩画の画材は一般に流通しておらず、浮世絵師が油彩を使用することは時代考証的に不可能です。",
         colors: ["#FF8C00", "#4682B4", "#FFD700", "#8B4513", "#2F4F4F"],
-        image: "images/s8-q7.jpg",
+        fakeExplanation:
+          "西洋画の画材と技法で描かれており、浮世絵師の伝統的な木版画や肉筆画の技法とは根本的に異なります。",
+        realImage: "images/s8-q7-real.jpg",
+        fakeImage: "images/s8-q7-fake.jpg",
       },
       {
         title: "吉原遊廓 花魁道中図",
@@ -1228,7 +1438,10 @@ const STAGES = [
         explanation:
           "贋作です。写楽は歌舞伎役者の大首絵を専門とした絵師であり、美人画や遊廓の風俗画は描いていません。また写楽の画風は「大胆なデフォルメ」と「鋭い心理描写」が特徴で、「繊細」「柔らかな筆致」「優美」という表現は写楽の作風と矛盾します。",
         colors: ["#FFB6C1", "#FFD700", "#C41E3A", "#E6E6FA", "#DDA0DD"],
-        image: "images/s8-q8.jpg",
+        fakeExplanation:
+          "描かれている主題が写楽の専門である歌舞伎役者絵ではなく美人画であり、画風も写楽の大胆なデフォルメとは矛盾します。",
+        realImage: "images/s8-q8-real.jpg",
+        fakeImage: "images/s8-q8-fake.jpg",
       },
       {
         title: "東海道 蒸気車之図",
@@ -1244,7 +1457,10 @@ const STAGES = [
         explanation:
           "贋作です。日本初の鉄道が新橋〜横浜間に開通したのは1872年（明治5年）です。広重は1858年に亡くなっており、鉄道を目にすることは不可能でした。1850年の日本にはまだ蒸気機関車は存在しません。",
         colors: ["#696969", "#808080", "#2F4F4F", "#1B3A5C", "#A9A9A9"],
-        image: "images/s8-q9.jpg",
+        fakeExplanation:
+          "描かれている蒸気機関車は広重の没後に日本に導入されたものであり、時代考証的に不可能な内容です。",
+        realImage: "images/s8-q9-real.jpg",
+        fakeImage: "images/s8-q9-fake.jpg",
       },
     ],
   },
@@ -1272,7 +1488,10 @@ const STAGES = [
         explanation:
           "本物です。琳派の始祖・宗達の最高傑作で国宝。金地の余白を「間」として活用する大胆な構図は、後に光琳、抱一がそれぞれ模写するほどの影響力を持ちました。建仁寺所蔵（京都国立博物館寄託）。",
         colors: ["#DAA520", "#228B22", "#808080", "#F5F5DC", "#4682B4"],
-        image: "images/s9-q1.jpg",
+        fakeExplanation:
+          "風神雷神の配置や金地の質感に微妙な違いがあります。宗達の大胆な余白の使い方が不自然に改変されています。",
+        realImage: "images/s9-q1-real.jpg",
+        fakeImage: "images/s9-q1-fake.jpg",
       },
       {
         title: "燕子花図屏風",
@@ -1288,7 +1507,10 @@ const STAGES = [
         explanation:
           "本物です。光琳の代表作で国宝。群青と緑青の二色のみで燕子花の群落を表現した大胆さ、パターンの反復によるリズム感は琳派の装飾美の極致です。『伊勢物語』八橋の段に着想を得た作品。根津美術館所蔵。",
         colors: ["#DAA520", "#00008B", "#228B22", "#4169E1", "#2F5F2F"],
-        image: "images/s9-q2.jpg",
+        fakeExplanation:
+          "燕子花の群青と緑青の色調やリズミカルなパターンに微妙な変更があります。光琳の装飾美の精緻さが損なわれています。",
+        realImage: "images/s9-q2-real.jpg",
+        fakeImage: "images/s9-q2-fake.jpg",
       },
       {
         title: "紅白梅図屏風",
@@ -1304,7 +1526,10 @@ const STAGES = [
         explanation:
           "本物です。光琳晩年の最高傑作で国宝。墨の濃淡を滲ませる「たらし込み」技法による樹幹の表現、銀地に描かれた水流の図案的な曲線美は琳派の技法の集大成です。MOA美術館所蔵。",
         colors: ["#DAA520", "#C0C0C0", "#8B0000", "#F5F5DC", "#556B2F"],
-        image: "images/s9-q3.jpg",
+        fakeExplanation:
+          "梅の幹のたらし込み表現や水流の曲線に微妙な違いがあります。光琳の金銀地の技法が不自然に変更されています。",
+        realImage: "images/s9-q3-real.jpg",
+        fakeImage: "images/s9-q3-fake.jpg",
       },
       {
         title: "夏秋草図屏風",
@@ -1320,7 +1545,10 @@ const STAGES = [
         explanation:
           "本物です。抱一の代表作で重要文化財。光琳の「風神雷神図屏風」（抱一が模写した版）の裏面に描かれ、風神→夕立の夏草、雷神→野分の秋草という見事な対応関係を持ちます。江戸琳派の叙情性の極致。",
         colors: ["#C0C0C0", "#228B22", "#DAA520", "#DDA0DD", "#8B7355"],
-        image: "images/s9-q4.jpg",
+        fakeExplanation:
+          "草花の配置や銀地の質感に微妙な改変があります。抱一の繊細な叙情性の表現が変質しています。",
+        realImage: "images/s9-q4-real.jpg",
+        fakeImage: "images/s9-q4-fake.jpg",
       },
       {
         title: "朝顔図屏風",
@@ -1336,7 +1564,10 @@ const STAGES = [
         explanation:
           "本物です。其一の代表作。光琳の「燕子花図屏風」を意識しながら、より大胆でシャープな造形感覚を示しています。金地に群青の花が映える配色は琳派の伝統を継承しつつ、其一独自の近代的感性が光る傑作。メトロポリタン美術館所蔵。",
         colors: ["#DAA520", "#00008B", "#228B22", "#4169E1", "#F5F5DC"],
-        image: "images/s9-q5.jpg",
+        fakeExplanation:
+          "朝顔の群青の花や蔓の配置に微妙な違いがあります。其一のシャープな造形感覚が改変されています。",
+        realImage: "images/s9-q5-real.jpg",
+        fakeImage: "images/s9-q5-fake.jpg",
       },
       {
         title: "洛中洛外の四季",
@@ -1352,7 +1583,10 @@ const STAGES = [
         explanation:
           "贋作です。宗達は紙本・絹本に岩絵具や墨で描いた画家です。17世紀初頭の日本ではカンヴァスに油彩という西洋画材は一般的に入手不可能でした。また宗達は装飾的で大胆な構図を特徴とし、「写実的」「一点透視図法」は宗達の画風と根本的に異なります。",
         colors: ["#8B7355", "#556B2F", "#CD853F", "#696969", "#A0522D"],
-        image: "images/s9-q6.jpg",
+        fakeExplanation:
+          "西洋画の画材と技法で描かれており、17世紀初頭の日本の画家の技法とは根本的に異なります。宗達の装飾的画風とは矛盾する写実的表現です。",
+        realImage: "images/s9-q6-real.jpg",
+        fakeImage: "images/s9-q6-fake.jpg",
       },
       {
         title: "桜花爛漫図",
@@ -1368,7 +1602,10 @@ const STAGES = [
         explanation:
           "贋作です。光琳は自然を「意匠化」「デザイン化」する画家であり、「植物図鑑のような精密さ」「科学的な正確さ」「空気遠近法」は琳派の美意識と正反対です。琳派は自然の本質をパターンと装飾に昇華させることを目指しました。",
         colors: ["#FFB6C1", "#228B22", "#FFDAB9", "#90EE90", "#DEB887"],
-        image: "images/s9-q7.jpg",
+        fakeExplanation:
+          "描写が写実的すぎ、光琳の自然を意匠化・デザイン化する琳派の美意識と正反対の表現になっています。",
+        realImage: "images/s9-q7-real.jpg",
+        fakeImage: "images/s9-q7-fake.jpg",
       },
       {
         title: "月下秋草図",
@@ -1384,7 +1621,10 @@ const STAGES = [
         explanation:
           "贋作です。抱一は繊細で優美な叙情性を特徴とする画家です。「太く力強い輪郭線」「鮮烈な原色」「激しい筆致」「荒々しい表現」は抱一の画風と正反対であり、むしろ表現主義的な特徴です。抱一の真作は繊細な色調と優美な線描が特徴です。",
         colors: ["#FF0000", "#FFD700", "#000000", "#FF4500", "#228B22"],
-        image: "images/s9-q8.jpg",
+        fakeExplanation:
+          "力強い輪郭線や原色の使用が、抱一の繊細で優美な叙情性とは正反対の表現主義的な特徴を示しています。",
+        realImage: "images/s9-q8-real.jpg",
+        fakeImage: "images/s9-q8-fake.jpg",
       },
       {
         title: "四季花鳥図",
@@ -1400,7 +1640,10 @@ const STAGES = [
         explanation:
           "贋作です。琳派は金銀地に鮮やかな岩絵具の色彩と装飾的な構成を最大の特徴とします。「墨の濃淡のみ」「禅の精神」「文人画の影響」は琳派ではなく、南画（文人画）の特徴であり、画派の帰属が完全に異なります。",
         colors: ["#2F4F4F", "#696969", "#808080", "#A9A9A9", "#F5F5DC"],
-        image: "images/s9-q9.jpg",
+        fakeExplanation:
+          "墨画による文人画的表現が、琳派の金銀地に鮮やかな岩絵具の色彩と装飾的構成という本質的特徴と完全に矛盾しています。",
+        realImage: "images/s9-q9-real.jpg",
+        fakeImage: "images/s9-q9-fake.jpg",
       },
     ],
   },
