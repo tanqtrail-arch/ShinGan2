@@ -84,32 +84,41 @@
           </div>
         </div>
 
-        <!-- Painting Card (always visible) -->
-        <div class="painting-card">
-          <div class="painting-canvas painting-frame" id="painting-canvas"></div>
-          <div class="painting-info">
-            <h3 class="painting-title" id="painting-title"></h3>
-            <dl class="painting-meta">
-              <dt>作者</dt>
-              <dd id="painting-artist"></dd>
-              <dt>制作年</dt>
-              <dd id="painting-year"></dd>
-              <dt>技法</dt>
-              <dd id="painting-medium"></dd>
-              <dt>サイズ</dt>
-              <dd id="painting-size"></dd>
-              <dt>所蔵</dt>
-              <dd id="painting-location"></dd>
-            </dl>
-            <p class="painting-description" id="painting-description"></p>
+        <!-- Painting Info -->
+        <div class="painting-info-card">
+          <h3 class="painting-title" id="painting-title"></h3>
+          <dl class="painting-meta">
+            <dt>作者</dt>
+            <dd id="painting-artist"></dd>
+            <dt>制作年</dt>
+            <dd id="painting-year"></dd>
+            <dt>技法</dt>
+            <dd id="painting-medium"></dd>
+            <dt>サイズ</dt>
+            <dd id="painting-size"></dd>
+            <dt>所蔵</dt>
+            <dd id="painting-location"></dd>
+          </dl>
+          <p class="painting-description" id="painting-description"></p>
+        </div>
+
+        <!-- Two Paintings Side by Side -->
+        <div class="dual-painting-area" id="dual-painting-area">
+          <div class="dual-painting-slot" id="slot-left">
+            <div class="dual-painting-label">A</div>
+            <div class="painting-canvas painting-frame" id="painting-canvas-left"></div>
+          </div>
+          <div class="dual-painting-slot" id="slot-right">
+            <div class="dual-painting-label">B</div>
+            <div class="painting-canvas painting-frame" id="painting-canvas-right"></div>
           </div>
         </div>
 
         <!-- Phase 1: Viewing (no timer, just read info) -->
         <div class="viewing-phase active" id="viewing-phase">
           <div class="viewing-message">
-            <p class="viewing-label">作品情報を確認してください</p>
-            <p class="viewing-sub">準備ができたら鑑定に進みましょう</p>
+            <p class="viewing-label">2つの作品を見比べてください</p>
+            <p class="viewing-sub">どちらが本物か、準備ができたら鑑定に進みましょう</p>
           </div>
           <button class="btn btn-primary btn-start-judge" id="btn-start-judge">
             鑑定に進む
@@ -117,21 +126,22 @@
           </button>
         </div>
 
-        <!-- Phase 2: Judging (timer running, answer buttons) -->
+        <!-- Phase 2: Judging (timer running, pick which is real) -->
         <div class="judging-phase" id="judging-phase">
           <div class="hint-area">
             <button class="hint-btn" id="hint-btn">ヒントを見る (H)</button>
             <div class="hint-text" id="hint-text"></div>
           </div>
 
+          <p class="judge-prompt">どちらが本物？</p>
           <div class="judge-buttons">
-            <button class="judge-btn authentic" id="btn-authentic">
-              本物
-              <span class="key-hint">キー: 1 / A</span>
+            <button class="judge-btn pick-left" id="btn-pick-left">
+              A
+              <span class="key-hint">キー: 1 / ←</span>
             </button>
-            <button class="judge-btn forgery" id="btn-forgery">
-              贋作
-              <span class="key-hint">キー: 2 / F</span>
+            <button class="judge-btn pick-right" id="btn-pick-right">
+              B
+              <span class="key-hint">キー: 2 / →</span>
             </button>
           </div>
         </div>

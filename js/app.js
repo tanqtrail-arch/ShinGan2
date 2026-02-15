@@ -11,7 +11,7 @@ const App = (() => {
   let hintUsed = false;
   let answered = false;
   let judging = false; // NEW: tracks intro vs judging phase
-  let showingAuthentic = true; // NEW: whether current display is real or fake
+  let realOnLeft = true; // whether real image is on the left (A) side
   const TIME_LIMIT = 15;
 
   // DOM refs
@@ -43,8 +43,11 @@ const App = (() => {
     els.timerText = document.getElementById("timer-text");
     els.timerCircle = document.getElementById("timer-circle-progress");
     els.timerArea = document.getElementById("timer-area");
-    els.paintingCard = document.getElementById("painting-card");
-    els.paintingCanvas = document.getElementById("painting-canvas");
+    els.canvasLeft = document.getElementById("painting-canvas-left");
+    els.canvasRight = document.getElementById("painting-canvas-right");
+    els.slotLeft = document.getElementById("slot-left");
+    els.slotRight = document.getElementById("slot-right");
+    els.dualArea = document.getElementById("dual-painting-area");
     els.paintingTitle = document.getElementById("painting-title");
     els.paintingArtist = document.getElementById("painting-artist");
     els.paintingYear = document.getElementById("painting-year");
@@ -54,8 +57,8 @@ const App = (() => {
     els.paintingDescription = document.getElementById("painting-description");
     els.hintBtn = document.getElementById("hint-btn");
     els.hintText = document.getElementById("hint-text");
-    els.btnAuthentic = document.getElementById("btn-authentic");
-    els.btnForgery = document.getElementById("btn-forgery");
+    els.btnPickLeft = document.getElementById("btn-pick-left");
+    els.btnPickRight = document.getElementById("btn-pick-right");
     els.answerOverlay = document.getElementById("answer-overlay");
     els.answerResult = document.getElementById("answer-result");
     els.answerExplanation = document.getElementById("answer-explanation");
@@ -98,8 +101,14 @@ const App = (() => {
       .addEventListener("click", showStages);
     els.btnStartJudge.addEventListener("click", startJudging);
     els.hintBtn.addEventListener("click", showHint);
-    els.btnAuthentic.addEventListener("click", () => submitAnswer(true));
-    els.btnForgery.addEventListener("click", () => submitAnswer(false));
+    els.btnPickLeft.addEventListener("click", () => submitAnswer("left"));
+    els.btnPickRight.addEventListener("click", () => submitAnswer("right"));
+    els.slotLeft.addEventListener("click", () => {
+      if (judging && !answered) submitAnswer("left");
+    });
+    els.slotRight.addEventListener("click", () => {
+      if (judging && !answered) submitAnswer("right");
+    });
     els.answerNext.addEventListener("click", nextQuestion);
     document
       .getElementById("btn-result-stages")
@@ -108,8 +117,13 @@ const App = (() => {
       .getElementById("btn-result-next")
       .addEventListener("click", nextStage);
 
-    // Zoom
-    els.paintingCanvas.addEventListener("click", openZoom);
+    // Zoom (on painting canvases)
+    els.canvasLeft.addEventListener("click", (e) => {
+      if (!judging) { e.stopPropagation(); openZoom("left"); }
+    });
+    els.canvasRight.addEventListener("click", (e) => {
+      if (!judging) { e.stopPropagation(); openZoom("right"); }
+    });
     els.zoomModal.addEventListener("click", closeZoom);
 
     // Keyboard
@@ -197,17 +211,20 @@ const App = (() => {
     hintUsed = false;
     const q = currentStage.questions[currentQuestionIndex];
 
-    // Randomly decide to show real or fake image
-    showingAuthentic = Math.random() < 0.5;
+    // Randomly decide which side gets the real image
+    realOnLeft = Math.random() < 0.5;
 
     // Update progress
     els.questionProgress.textContent = `${currentQuestionIndex + 1} / ${currentStage.questions.length}`;
     els.progressBar.style.width = `${((currentQuestionIndex + 1) / currentStage.questions.length) * 100}%`;
     els.stageName.textContent = `${currentStage.name} - Stage ${currentStage.id}`;
 
-    // Render painting (real or fake based on random selection)
-    const imageToShow = showingAuthentic ? q.realImage : q.fakeImage;
-    renderPainting(els.paintingCanvas, q, currentStage.id, currentQuestionIndex, imageToShow);
+    // Render both paintings (real and fake)
+    const leftImage = realOnLeft ? q.realImage : q.fakeImage;
+    const rightImage = realOnLeft ? q.fakeImage : q.realImage;
+    renderPainting(els.canvasLeft, q, currentStage.id, currentQuestionIndex, leftImage);
+    renderPainting(els.canvasRight, q, currentStage.id, currentQuestionIndex + 50, rightImage);
+
     els.paintingTitle.textContent = q.title;
     els.paintingArtist.textContent = q.artist;
     els.paintingYear.textContent = q.year;
@@ -220,10 +237,12 @@ const App = (() => {
     els.hintBtn.classList.remove("used");
     els.hintText.classList.remove("visible");
     els.hintText.textContent = q.hint;
-    els.btnAuthentic.disabled = false;
-    els.btnForgery.disabled = false;
-    els.btnAuthentic.className = "judge-btn authentic";
-    els.btnForgery.className = "judge-btn forgery";
+    els.btnPickLeft.disabled = false;
+    els.btnPickRight.disabled = false;
+    els.btnPickLeft.className = "judge-btn pick-left";
+    els.btnPickRight.className = "judge-btn pick-right";
+    els.slotLeft.className = "dual-painting-slot";
+    els.slotRight.className = "dual-painting-slot";
     els.answerOverlay.classList.remove("visible");
 
     // Show viewing phase, hide judging phase
@@ -246,6 +265,10 @@ const App = (() => {
     els.viewingPhase.classList.remove("active");
     els.judgingPhase.classList.add("active");
     els.timerArea.classList.add("active");
+
+    // Make painting slots clickable
+    els.slotLeft.classList.add("selectable");
+    els.slotRight.classList.add("selectable");
 
     // Scroll to top so timer is visible
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -302,56 +325,67 @@ const App = (() => {
     els.hintText.classList.add("visible");
   }
 
-  function submitAnswer(playerSaidAuthentic) {
+  function submitAnswer(playerPick) {
+    // playerPick: "left", "right", or null (timeout)
     if (answered) return;
     answered = true;
     clearInterval(timerInterval);
 
     const q = currentStage.questions[currentQuestionIndex];
-    const timedOut = playerSaidAuthentic === null;
-    // Now uses showingAuthentic (randomly determined) instead of q.isAuthentic
-    const correct = !timedOut && playerSaidAuthentic === showingAuthentic;
+    const timedOut = playerPick === null;
+    const pickedReal = !timedOut && ((playerPick === "left" && realOnLeft) || (playerPick === "right" && !realOnLeft));
+    const correct = pickedReal;
+    const correctSide = realOnLeft ? "left" : "right";
+    const correctLabel = realOnLeft ? "A" : "B";
 
     if (correct) score++;
 
     answers.push({
       question: q,
-      playerAnswer: playerSaidAuthentic,
-      wasAuthentic: showingAuthentic,
+      playerPick,
+      correctSide,
       correct,
       timedOut,
       hintUsed,
       timeSpent: TIME_LIMIT - timeLeft,
     });
 
-    // Disable buttons
-    els.btnAuthentic.disabled = true;
-    els.btnForgery.disabled = true;
+    // Disable buttons and slots
+    els.btnPickLeft.disabled = true;
+    els.btnPickRight.disabled = true;
+    els.slotLeft.classList.remove("selectable");
+    els.slotRight.classList.remove("selectable");
 
-    // Highlight correct answer
-    if (showingAuthentic) {
-      els.btnAuthentic.classList.add("correct-answer");
+    // Highlight correct and wrong slots
+    if (realOnLeft) {
+      els.slotLeft.classList.add("correct-pick");
+      if (playerPick === "right") els.slotRight.classList.add("wrong-pick");
     } else {
-      els.btnForgery.classList.add("correct-answer");
+      els.slotRight.classList.add("correct-pick");
+      if (playerPick === "left") els.slotLeft.classList.add("wrong-pick");
+    }
+
+    // Highlight correct button
+    if (realOnLeft) {
+      els.btnPickLeft.classList.add("correct-answer");
+    } else {
+      els.btnPickRight.classList.add("correct-answer");
     }
 
     // Show answer overlay
     let resultHTML;
     if (timedOut) {
       resultHTML = `<div class="answer-badge timeout">TIME UP</div>
-        <p class="answer-correct-was">正解: ${showingAuthentic ? "本物" : "贋作"}</p>`;
+        <p class="answer-correct-was">正解: ${correctLabel}が本物</p>`;
     } else if (correct) {
       resultHTML = `<div class="answer-badge correct">正解！</div>`;
     } else {
       resultHTML = `<div class="answer-badge incorrect">不正解</div>
-        <p class="answer-correct-was">正解: ${showingAuthentic ? "本物" : "贋作"}</p>`;
+        <p class="answer-correct-was">正解: ${correctLabel}が本物</p>`;
     }
 
     els.answerResult.innerHTML = resultHTML;
-    // Show forgery explanation when fake was shown, normal explanation for real
-    els.answerExplanation.textContent = showingAuthentic
-      ? `本物です。${q.explanation}`
-      : `贋作です。${q.fakeExplanation || q.explanation}`;
+    els.answerExplanation.textContent = `${q.explanation} ${q.fakeExplanation ? `【贋作の特徴】${q.fakeExplanation}` : ""}`;
     els.answerNext.textContent =
       currentQuestionIndex < currentStage.questions.length - 1
         ? "次の問題へ"
@@ -397,10 +431,11 @@ const App = (() => {
       .map((a, i) => {
         const icon = a.timedOut ? "&#9200;" : a.correct ? "&#9675;" : "&#10005;";
         const cls = a.timedOut ? "timeout" : a.correct ? "correct" : "incorrect";
+        const correctLabel = a.correctSide === "left" ? "A" : "B";
         return `<div class="result-answer-item ${cls}">
           <span class="result-answer-icon">${icon}</span>
           <span class="result-answer-title">Q${i + 1}. ${a.question.title}</span>
-          <span class="result-answer-label">${a.wasAuthentic ? "本物" : "贋作"}</span>
+          <span class="result-answer-label">本物: ${correctLabel}</span>
         </div>`;
       })
       .join("");
@@ -453,12 +488,12 @@ const App = (() => {
   }
 
   // === Zoom ===
-  function openZoom() {
+  function openZoom(side) {
     const q = currentStage.questions[currentQuestionIndex];
     els.zoomContent.innerHTML = "";
 
-    // If image exists, show zoomed image
-    const existingImg = els.paintingCanvas.querySelector(".painting-img");
+    const canvas = side === "left" ? els.canvasLeft : els.canvasRight;
+    const existingImg = canvas.querySelector(".painting-img");
     if (existingImg) {
       const img = document.createElement("img");
       img.src = existingImg.src;
@@ -498,10 +533,10 @@ const App = (() => {
       }
       return;
     }
-    if (e.key === "1" || e.key === "a") {
-      submitAnswer(true);
-    } else if (e.key === "2" || e.key === "f") {
-      submitAnswer(false);
+    if (e.key === "1" || e.key === "ArrowLeft" || e.key === "a") {
+      submitAnswer("left");
+    } else if (e.key === "2" || e.key === "ArrowRight" || e.key === "b") {
+      submitAnswer("right");
     } else if (e.key === "h") {
       showHint();
     }
