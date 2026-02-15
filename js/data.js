@@ -163,25 +163,6 @@ const STAGES = [
         realImage: "images/s1-q8-real.jpg",
         fakeImage: "images/s1-q8-fake.jpg",
       },
-      {
-        title: "ナスタージョ・デリ・オネスティの物語 第一話",
-        artist: "サンドロ・ボッティチェリ",
-        year: "1483年頃",
-        medium: "板にテンペラ",
-        size: "83cm × 138cm",
-        location: "プラド美術館",
-        description:
-          "ボッカッチョ『デカメロン』第五日第八話を題材にした連作の第一場面。松林の中で失恋に苦しむナスタージョが、騎士に追われる裸の女性の幻影に遭遇する劇的な瞬間を描く。",
-        isAuthentic: true,
-        hint: "ボッティチェリの物語画の構成と文学的題材に注目。",
-        explanation:
-          "本物です。メディチ家の婚礼を祝う注文作品として描かれた4枚連作の第一場面。ボッティチェリの流麗な線描で物語の劇的場面が表現されています。文学作品の視覚化という点でルネサンス絵画の知性を示す作品。プラド美術館所蔵。",
-        colors: ["#228B22", "#8B4513", "#87CEEB", "#DEB887", "#556B2F"],
-        fakeExplanation:
-          "松林の色調や人物の配置に改変が加えられています。ボッティチェリの流麗な線描による物語表現が不自然に変更されています。",
-        realImage: "images/s1-q9-real.jpg",
-        fakeImage: "images/s1-q9-fake.jpg",
-      },
     ],
   },
 
